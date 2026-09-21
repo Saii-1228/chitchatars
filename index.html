@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chitchatars - Login</title>
+    <title>chitchatars - Welcome</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
     <div id="app-container">
         <div class="login-box">
-            <h2>Join chitchatars</h2>
+            <!-- Updated Welcome Message -->
+            <h2>Welcome to chitchatars<br><span class="subtitle">Made by Ojha</span></h2>
             
+            <!-- Login / Sign Up Toggle Switch -->
+            <div class="auth-toggle">
+                <button id="toggle-signup" class="active" onclick="switchTab('signup')">Sign Up (New ID)</button>
+                <button id="toggle-login" onclick="switchTab('login')">Login (Existing)</button>
+            </div>
+
             <div class="input-group">
-                <label>Username or ID</label>
-                <input type="text" id="username" placeholder="Enter your username">
+                <label id="username-label">Create a New Username or ID</label>
+                <input type="text" id="username" placeholder="Enter your ID">
             </div>
 
             <div class="input-group">
@@ -32,13 +39,15 @@
                 </div>
             </div>
 
-            <button id="login-btn" onclick="startChat()">Enter Chat</button>
+            <!-- Updated Final Button -->
+            <button id="action-btn" class="login-btn" onclick="startChat()">Create ID & Enter Public Chat</button>
         </div>
     </div>
 
     <script>
         let chosenAvatarId = "";
 
+        // Avatar Selection Logic
         function selectAvatar(avatarId) {
             let allAvatars = document.querySelectorAll('.avatar');
             allAvatars.forEach(function(av) {
@@ -49,12 +58,33 @@
             chosenAvatarId = avatarId;
         }
 
+        // Tab Switching Logic (Sign Up vs Login)
+        function switchTab(tab) {
+            let loginBtn = document.getElementById('toggle-login');
+            let signupBtn = document.getElementById('toggle-signup');
+            let actionBtn = document.getElementById('action-btn');
+            let userLabel = document.getElementById('username-label');
+
+            if (tab === 'login') {
+                loginBtn.classList.add('active');
+                signupBtn.classList.remove('active');
+                actionBtn.innerText = "Enter Public Chat";
+                userLabel.innerText = "Existing Username or ID";
+            } else {
+                signupBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+                actionBtn.innerText = "Create ID & Enter Public Chat";
+                userLabel.innerText = "Create a New Username or ID";
+            }
+        }
+
+        // Enter Chat Logic
         function startChat() {
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
 
             if (user === "" || pass === "") {
-                alert("Hold on! Please enter both a username and password.");
+                alert("Hold on! Please enter your details.");
                 return;
             }
 
@@ -68,4 +98,3 @@
     </script>
 </body>
 </html>
-            
