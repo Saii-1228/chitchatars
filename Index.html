@@ -4,27 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chitchatars - Login</title>
-    <!-- This links to your CSS file -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <!-- We will build the login box inside this container -->
-    <div id="app-container">
-        <h1>Welcome to chitchatars</h1>
-    </div>
-
-    <!-- This links to your JavaScript file -->
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chitchatars - Login</title>
-    <!-- Links to your style.css file -->
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -57,51 +36,36 @@
         </div>
     </div>
 
-    <!-- The JavaScript logic written directly in the HTML file -->
     <script>
-        // This variable remembers which avatar the user clicked
         let chosenAvatarId = "";
 
-        // Function triggered when an avatar is clicked
         function selectAvatar(avatarId) {
-            // 1. Find all avatars and remove the blue border (the 'selected' class)
             let allAvatars = document.querySelectorAll('.avatar');
             allAvatars.forEach(function(av) {
                 av.classList.remove('selected');
             });
 
-            // 2. Add the blue border to the specific avatar that was just clicked
             document.getElementById(avatarId).classList.add('selected');
-            
-            // 3. Save that avatar's ID so we know which one they picked
             chosenAvatarId = avatarId;
         }
 
-        // Function triggered when the "Enter Chat" button is clicked
         function startChat() {
-            // Grab what the user typed in the boxes
             let user = document.getElementById('username').value;
             let pass = document.getElementById('password').value;
 
-            // Check if the boxes are empty
             if (user === "" || pass === "") {
                 alert("Hold on! Please enter both a username and password.");
-                return; // Stops the code here if empty
+                return;
             }
 
-            // Check if they forgot to pick an avatar
             if (chosenAvatarId === "") {
                 alert("Don't forget to choose an avatar!");
                 return;
             }
 
-            // If everything is filled out, welcome them! 
             alert("Success! Welcome to chitchatars, " + user + "!");
-            
-            // In the next step, we will replace this alert with code that 
-            // hides the login box and reveals the main chat dashboard.
         }
     </script>
 </body>
 </html>
-
+            
