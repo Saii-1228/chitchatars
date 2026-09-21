@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chitchatars - Dashboard</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Side Navigation Menu -->
+        <div class="sidebar">
+            <div class="logo">chitchatars</div>
+            <ul class="nav-links">
+                <li class="active">Public Global Chat</li>
+                <li>Direct Messages</li>
+                <li>Friend Requests</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+
+        <!-- Main Chat Interface -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <h3>Public Global Chat</h3>
+            </div>
+            
+            <div class="messages-container">
+                <!-- Example of a message received from someone else -->
+                <div class="message received">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Max" class="chat-avatar">
+                    <div class="message-content">
+                        <span class="sender-name">Max</span>
+                        <p>Hello everyone! Welcome to the global room.</p>
+                    </div>
+                </div>
+                
+                <!-- Example of a message you sent -->
+                <div class="message sent">
+                    <div class="message-content">
+                        <p>Hey Max! The new chat interface looks super clean.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Typing and Send Area -->
+            <div class="chat-input-area">
+                <input type="text" id="chat-message" placeholder="Type a message...">
+                <button class="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
