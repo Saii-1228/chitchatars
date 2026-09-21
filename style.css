@@ -225,3 +225,38 @@ h2 {
     background-color: #0056b3;
 }
 
+/* --- MOBILE MENU STYLING --- */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 15px;
+    color: #333;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+}
+
+/* When the screen is smaller than a tablet */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show the hamburger button */
+    }
+    
+    .sidebar {
+        position: absolute;
+        left: -250px; /* Hide sidebar off the left side of the screen */
+        height: 100vh;
+        z-index: 1000;
+        transition: 0.3s ease; /* Smooth sliding animation */
+    }
+    
+    .sidebar.active {
+        left: 0; /* Slide sidebar onto the screen */
+        box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+    }
+}
