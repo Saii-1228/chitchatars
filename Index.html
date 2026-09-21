@@ -18,4 +18,90 @@
     <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chitchatars - Login</title>
+    <!-- Links to your style.css file -->
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div id="app-container">
+        <div class="login-box">
+            <h2>Join chitchatars</h2>
+            
+            <div class="input-group">
+                <label>Username or ID</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+
+            <div class="avatar-section">
+                <p>Choose your Avatar:</p>
+                <div class="avatar-grid">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Max" class="avatar" id="avatar1" onclick="selectAvatar('avatar1')">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mia" class="avatar" id="avatar2" onclick="selectAvatar('avatar2')">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Leo" class="avatar" id="avatar3" onclick="selectAvatar('avatar3')">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Zoe" class="avatar" id="avatar4" onclick="selectAvatar('avatar4')">
+                </div>
+            </div>
+
+            <button id="login-btn" onclick="startChat()">Enter Chat</button>
+        </div>
+    </div>
+
+    <!-- The JavaScript logic written directly in the HTML file -->
+    <script>
+        // This variable remembers which avatar the user clicked
+        let chosenAvatarId = "";
+
+        // Function triggered when an avatar is clicked
+        function selectAvatar(avatarId) {
+            // 1. Find all avatars and remove the blue border (the 'selected' class)
+            let allAvatars = document.querySelectorAll('.avatar');
+            allAvatars.forEach(function(av) {
+                av.classList.remove('selected');
+            });
+
+            // 2. Add the blue border to the specific avatar that was just clicked
+            document.getElementById(avatarId).classList.add('selected');
+            
+            // 3. Save that avatar's ID so we know which one they picked
+            chosenAvatarId = avatarId;
+        }
+
+        // Function triggered when the "Enter Chat" button is clicked
+        function startChat() {
+            // Grab what the user typed in the boxes
+            let user = document.getElementById('username').value;
+            let pass = document.getElementById('password').value;
+
+            // Check if the boxes are empty
+            if (user === "" || pass === "") {
+                alert("Hold on! Please enter both a username and password.");
+                return; // Stops the code here if empty
+            }
+
+            // Check if they forgot to pick an avatar
+            if (chosenAvatarId === "") {
+                alert("Don't forget to choose an avatar!");
+                return;
+            }
+
+            // If everything is filled out, welcome them! 
+            alert("Success! Welcome to chitchatars, " + user + "!");
+            
+            // In the next step, we will replace this alert with code that 
+            // hides the login box and reveals the main chat dashboard.
+        }
+    </script>
+</body>
+</html>
 
