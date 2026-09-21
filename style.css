@@ -1,5 +1,5 @@
 body {
-    background-color: #e0f7fa; /* A soft blue background */
+    background-color: #e0f7fa; 
     font-family: sans-serif;
     display: flex;
     justify-content: center;
@@ -8,6 +8,78 @@ body {
     margin: 0;
 }
 
-h1 {
-    color: #333333;
+.login-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
 }
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.avatar-section p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.avatar-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.avatar.selected {
+    border-color: #007bff;
+    transform: scale(1.1);
+}
+
+#login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#login-btn:hover {
+    background-color: #0056b3;
+}
+
