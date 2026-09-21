@@ -12,52 +12,78 @@
         <div class="sidebar">
             <div class="logo">chitchatars</div>
             <ul class="nav-links">
-                <li class="active">Public Global Chat</li>
-                <li>Direct Messages</li>
-                <li>Friend Requests</li>
-                <li>Settings</li>
+                <li id="nav-public" class="active" onclick="switchTab('public')">Public Global Chat</li>
+                <li id="nav-friends" onclick="switchTab('friends')">Friend Requests</li>
+                <li id="nav-settings" onclick="switchTab('settings')">Settings</li>
             </ul>
         </div>
 
-        <!-- Main Chat Interface -->
+        <!-- Main Interface -->
         <div class="chat-area">
             <div class="chat-header">
-                <h3>Public Global Chat</h3>
+                <button id="menu-btn" class="menu-toggle">☰</button>
+                <h3 id="header-title">Public Global Chat</h3>
             </div>
             
-            <div class="messages-container">
-                <!-- Example of a message received from someone else -->
-                <div class="message received">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Max" class="chat-avatar">
-                    <div class="message-content">
-                        <span class="sender-name">Max</span>
-                        <p>Hello everyone! Welcome to the global room.</p>
+            <!-- 1. PUBLIC CHAT SCREEN -->
+            <div id="panel-public" class="panel-screen">
+                <div class="messages-container">
+                    <div class="message received">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Max" class="chat-avatar">
+                        <div class="message-content">
+                            <span class="sender-name">Max</span>
+                            <p>Hello everyone! Welcome to the global room.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Example of a message you sent -->
-                <div class="message sent">
-                    <div class="message-content">
-                        <p>Hey Max! The new chat interface looks super clean.</p>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chat-message" placeholder="Type a message...">
+                    <button class="send-btn">Send</button>
+                </div>
+            </div>
+
+            <!-- 2. FRIEND REQUESTS SCREEN -->
+            <div id="panel-friends" class="panel-screen" style="display: none;">
+                <h4>Pending Requests</h4>
+                <div class="friend-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mia" class="chat-avatar">
+                    <div class="friend-info">
+                        <span class="sender-name">Mia_Tech</span>
+                        <p>Wants to be your friend</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button class="accept-btn">Accept</button>
+                        <button class="decline-btn">Decline</button>
                     </div>
                 </div>
             </div>
 
-            <!-- The Typing and Send Area -->
-            <div class="chat-input-area">
-                <input type="text" id="chat-message" placeholder="Type a message...">
-                <button class="send-btn">Send</button>
+            <!-- 3. SETTINGS SCREEN -->
+            <div id="panel-settings" class="panel-screen" style="display: none;">
+                <h4>Profile Settings</h4>
+                <p>Logged in as: <strong>Ojha</strong></p>
+                <button class="logout-btn" onclick="logout()">Log Out</button>
             </div>
         </div>
     </div>
-        <script>
+
+    <script>
+        // Menu Toggle Logic for Mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.querySelector('.sidebar');
+        
+        menuBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+
+        // Chat Send Logic
         const messageInput = document.getElementById('chat-message');
         const sendBtn = document.querySelector('.send-btn');
         const messagesContainer = document.querySelector('.messages-container');
 
         function sendMessage() {
             const text = messageInput.value;
-            
             if (text.trim() === "") return;
 
             const newMessage = document.createElement('div');
@@ -67,15 +93,51 @@
                     <p>${text}</p>
                 </div>
             `;
-
             messagesContainer.appendChild(newMessage);
             messageInput.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         sendBtn.addEventListener('click', sendMessage);
-    </script>
+        messageInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') sendMessage();
+        });
 
+        // Navigation Menu Logic (Switching Screens)
+        function switchTab(tabId) {
+            // Hide all screens
+            document.getElementById('panel-public').style.display = 'none';
+            document.getElementById('panel-friends').style.display = 'none';
+            document.getElementById('panel-settings').style.display = 'none';
+
+            // Remove highlight from all buttons
+            document.getElementById('nav-public').classList.remove('active');
+            document.getElementById('nav-friends').classList.remove('active');
+            document.getElementById('nav-settings').classList.remove('active');
+
+            // Show the correct screen and highlight the clicked button
+            if (tabId === 'public') {
+                document.getElementById('panel-public').style.display = 'flex';
+                document.getElementById('nav-public').classList.add('active');
+                document.getElementById('header-title').innerText = "Public Global Chat";
+            } else if (tabId === 'friends') {
+                document.getElementById('panel-friends').style.display = 'block';
+                document.getElementById('nav-friends').classList.add('active');
+                document.getElementById('header-title').innerText = "Friend Requests";
+            } else if (tabId === 'settings') {
+                document.getElementById('panel-settings').style.display = 'block';
+                document.getElementById('nav-settings').classList.add('active');
+                document.getElementById('header-title').innerText = "Settings";
+            }
+
+            // Automatically hide the mobile sidebar after tapping a link
+            sidebar.classList.remove('active');
+        }
+
+        // Logout Logic
+        function logout() {
+            window.location.href = "index.html";
+        }
+    </script>
 </body>
 </html>
-
