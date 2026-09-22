@@ -361,3 +361,55 @@ h2 {
     margin-top: 20px;
     font-weight: bold;
 }
+/* --- HOME / LANDING PAGE STYLING --- */
+.landing-body {
+    background: linear-gradient(135deg, #007bff, #00d2ff);
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.landing-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.landing-content {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.logo-large {
+    font-size: 42px;
+    color: #333;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.get-started-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.get-started-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
