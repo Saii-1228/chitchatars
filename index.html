@@ -77,7 +77,6 @@
                 userLabel.innerText = "Create a New Username or ID";
             }
         }
-
         // Enter Chat Logic
         function startChat() {
             let user = document.getElementById('username').value;
@@ -93,8 +92,12 @@
                 return;
             }
 
+            // Save the user's name and avatar to the browser's memory
+            localStorage.setItem("chitchat_user", user);
+            let avatarImageSrc = document.getElementById(chosenAvatarId).src;
+            localStorage.setItem("chitchat_avatar", avatarImageSrc);
+
             window.location.href = "dashboard.html";
         }
-    </script>
-</body>
-</html>
+
+        
