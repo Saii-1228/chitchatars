@@ -67,9 +67,16 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Menu Toggle Logic for Mobile
+        // --- 1. Load User Data ---
+        // This reads the name and avatar you saved on the login screen
+        const savedUser = localStorage.getItem("chitchat_user") || "Guest";
+        const savedAvatar = localStorage.getItem("chitchat_avatar") || "https://api.dicebear.com/7.x/avataaars/svg?seed=Max";
+
+        // Update the Settings page to show your real ID instead of a placeholder
+        document.querySelector('#panel-settings p').innerHTML = `Logged in as: <strong>${savedUser}</strong>`;
+
+        // --- 2. Mobile Menu Logic ---
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.querySelector('.sidebar');
         
@@ -77,7 +84,7 @@
             sidebar.classList.toggle('active');
         });
 
-        // Chat Send Logic
+        // --- 3. Chat Send Logic ---
         const messageInput = document.getElementById('chat-message');
         const sendBtn = document.querySelector('.send-btn');
         const messagesContainer = document.querySelector('.messages-container');
@@ -88,7 +95,9 @@
 
             const newMessage = document.createElement('div');
             newMessage.className = 'message sent';
+            // Now we include YOUR saved avatar on the chat bubble!
             newMessage.innerHTML = `
+                <img src="${savedAvatar}" class="chat-avatar">
                 <div class="message-content">
                     <p>${text}</p>
                 </div>
@@ -103,19 +112,16 @@
             if (e.key === 'Enter') sendMessage();
         });
 
-        // Navigation Menu Logic (Switching Screens)
+        // --- 4. Navigation Menu Logic ---
         function switchTab(tabId) {
-            // Hide all screens
             document.getElementById('panel-public').style.display = 'none';
             document.getElementById('panel-friends').style.display = 'none';
             document.getElementById('panel-settings').style.display = 'none';
 
-            // Remove highlight from all buttons
             document.getElementById('nav-public').classList.remove('active');
             document.getElementById('nav-friends').classList.remove('active');
             document.getElementById('nav-settings').classList.remove('active');
 
-            // Show the correct screen and highlight the clicked button
             if (tabId === 'public') {
                 document.getElementById('panel-public').style.display = 'flex';
                 document.getElementById('nav-public').classList.add('active');
@@ -130,14 +136,18 @@
                 document.getElementById('header-title').innerText = "Settings";
             }
 
-            // Automatically hide the mobile sidebar after tapping a link
             sidebar.classList.remove('active');
         }
 
-        // Logout Logic
+        // --- 5. Logout Logic ---
         function logout() {
+            // Delete the saved memory when logging out
+            localStorage.removeItem("chitchat_user");
+            localStorage.removeItem("chitchat_avatar");
             window.location.href = "index.html";
         }
     </script>
+
+    
 </body>
 </html>
