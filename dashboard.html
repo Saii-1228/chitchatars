@@ -156,6 +156,19 @@
             window.location.href = "index.html";
         }
     </script>
+        // --- Loading Screen Fade Logic ---
+        window.addEventListener('load', function() {
+            // Wait 1.5 seconds, then start the fade out
+            setTimeout(function() {
+                const loader = document.getElementById('loading-screen');
+                loader.style.opacity = '0';
+                
+                // Wait 0.5 seconds for the fade to finish, then remove it completely
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1500); 
+        });
 
     
 </body>
