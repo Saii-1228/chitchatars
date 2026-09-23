@@ -6,7 +6,7 @@
     <title>chitchatars - Dashboard</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-    <!-- Insta-Style Loading Screen (Bulletproof) -->
+           <!-- Insta-Style Loading Screen (Bulletproof) -->
     <div id="loading-screen" onclick="this.style.display='none'">
         <div class="loading-logo-container">
             <h1 class="loading-logo">chitchatars</h1>
@@ -15,6 +15,34 @@
             <p>Developed by saii</p>
         </div>
     </div>
+    
+    <!-- Isolated Timer -->
+    <script>
+        setTimeout(function() {
+            let loader = document.getElementById('loading-screen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 1500);
+    </script>
+ 
+    
+    <!-- Isolated Timer -->
+    <script>
+        setTimeout(function() {
+            let loader = document.getElementById('loading-screen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 1500);
+    </script>
+
     
     <!-- Isolated Timer so other bugs can't stop it -->
     <script>
